@@ -1,0 +1,298 @@
+//@import url('https://fonts.googleapis.com/css?family=Kanit:800');
+@import url('https://fonts.googleapis.com/css?family=Bungee+Shade');
+
+
+.glitch {
+  flex: 1;
+  line-height: .75;
+  margin: auto;
+  color: #FF0DDB;
+  text-align: center;
+  transform: scaleX(var(--scale, 1));
+  animation: glitch-p 9s infinite alternate;
+  --f-size: 30;
+  font-size: calc(var(--f-size) * 1vmin);
+
+  
+  &::before,
+  &::after {
+    --top: 0;        // offset from top [0 - 10]
+    --left: 0;       // offset from left [0.001 - 1]
+    --v-height: 30%; // visible part
+    
+    --n-tenth: calc(var(--f-size) * .1 * var(--top));
+    --t-cut: calc(var(--n-tenth) / var(--f-size) * 100%);
+    --b-cut: calc(var(--t-cut) + var(--v-height));
+    
+    content: attr(data-text);
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    
+    transform: translateX(calc(var(--left) * 100%));
+    
+    // this helps to get rid of pixelization
+    filter: drop-shadow(0 0 transparent); 
+    
+    text-shadow: calc(var(--left) * -3em) 0 .02em lime, 
+                 calc(var(--left) * -6em) 0 .02em #ff00e1;
+    
+    background-color: var(--bg);
+    clip-path: polygon(0% var(--t-cut), 100% var(--t-cut), 100% var(--b-cut), 0% var(--b-cut));
+  } 
+  
+  &::before {
+    animation: glitch-b 1s infinite alternate-reverse;
+  }
+  &::after {
+    animation: glitch-a 2s infinite alternate;
+  }
+}
+
+@keyframes glitch-p {
+  17% { --scale: .87; }
+  31% { --scale: 1.1; }
+  37% { --scale: 1.3; }
+  47% { --scale: .91; }
+  87% { --scale: 1; }
+}
+
+@keyframes glitch-a {
+  10%,30%,50%,70%,90% {
+    --top: 0;
+    --left: 0;
+  }
+  0% {
+   --v-height: 15%; 
+  }
+  20% {
+    --left: .005;
+  }
+  40% {
+    --left: .01;
+    --v-height: 20%;
+    --top: 3;
+  }
+  60% {
+    --left: .03;
+    --v-height: 25%;
+    --top: 6;
+  }
+  80% {
+    --left: .07;
+    --v-height: 5%;
+    --top: 8;
+  }
+  100% {
+    --left: .083;
+    --v-height: 30%;
+    --top: 1;
+  }
+}
+
+@keyframes glitch-b {
+    10%,30%,50%,70%,90% {
+    --top: 0;
+    --left: 0;
+  }
+  0% {
+   --v-height: 15%; 
+   --top: 10;
+  }
+  20% {
+    --left: -.005;
+  }
+  40% {
+    --left: -.01;
+    --v-height: 17%;
+    --top: 3;
+  }
+  60% {
+    --left: -.03;
+    --v-height: 35%;
+    --top: 6;
+  }
+  80% {
+    --left: -.07;
+    --v-height: 5%;
+    --top: 8;
+  }
+  100% {
+    --left: -.083;
+    --v-height: 30%;
+    --top: 1;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.imageGlitch {
+  position: relative;
+  width: fit-content;
+  margin-bottom: 2rem;
+
+  --glitch-x: 0px;
+  --glitch-y: 0px;
+}
+
+.baseImg {
+  width: clamp(200px, 110vw, 340px);
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.glitchImg1,
+.glitchImg2 {
+  width: clamp(190px, 79vw, 299px);
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  opacity: 0.8;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.glitchImg1 {
+  animation: image-glitch-1 0.15s infinite;
+
+  filter:
+    drop-shadow(-8px 0 0 lime)
+    drop-shadow(8px 0 0 #ff00e1)
+    contrast(150%);
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 35%,
+    0 35%
+  );
+}
+
+.glitchImg2 {
+  animation: image-glitch-2 0.2s infinite;
+
+  filter:
+    drop-shadow(8px 0 0 #ff00e1)
+    drop-shadow(-8px 0 0 lime)
+    contrast(150%);
+
+  clip-path: polygon(
+    0 65%,
+    100% 65%,
+    100% 100%,
+    0 100%
+  );
+}
+
+.glitchImg3 {
+  width: clamp(140px, 20vw, 260px);
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  opacity: 0.85;
+  pointer-events: none;
+  mix-blend-mode: screen;
+
+  animation: image-glitch-3 0.12s infinite;
+
+  filter:
+    drop-shadow(-6px 0 0 lime)
+    drop-shadow(6px 0 0 #ff00e1)
+    contrast(170%);
+
+  clip-path: polygon(
+    0 30%,
+    100% 30%,
+    100% 70%,
+    0 70%
+  );
+}
+@keyframes image-glitch-1 {
+  0%   { transform: translate(0); filter: drop-shadow(-8px 0 0 lime) drop-shadow(8px 0 0 #ff00e1) contrast(150%); }
+  20%  { transform: translate(-6px, 2px); filter: drop-shadow(-12px 0 0 lime) drop-shadow(12px 0 0 #ff00e1) contrast(160%); }
+  40%  { transform: translate(5px, -2px); filter: drop-shadow(-4px 0 0 lime) drop-shadow(4px 0 0 #ff00e1) contrast(140%); }
+  60%  { transform: translate(-3px, 1px); filter: drop-shadow(-10px 0 0 lime) drop-shadow(10px 0 0 #ff00e1) contrast(155%); }
+  80%  { transform: translate(6px, -1px); filter: drop-shadow(-6px 0 0 lime) drop-shadow(6px 0 0 #ff00e1) contrast(150%); }
+  100% { transform: translate(0); filter: drop-shadow(-8px 0 0 lime) drop-shadow(8px 0 0 #ff00e1) contrast(150%); }
+}
+
+@keyframes image-glitch-2 {
+  0%   { transform: translate(0); filter: drop-shadow(8px 0 0 #ff00e1) drop-shadow(-8px 0 0 lime) contrast(150%); }
+  20%  { transform: translate(7px, -2px); filter: drop-shadow(12px 0 0 #ff00e1) drop-shadow(-12px 0 0 lime) contrast(160%); }
+  40%  { transform: translate(-5px, 2px); filter: drop-shadow(4px 0 0 #ff00e1) drop-shadow(-4px 0 0 lime) contrast(140%); }
+  60%  { transform: translate(3px, -1px); filter: drop-shadow(10px 0 0 #ff00e1) drop-shadow(-10px 0 0 lime) contrast(155%); }
+  80%  { transform: translate(-7px, 1px); filter: drop-shadow(6px 0 0 #ff00e1) drop-shadow(-6px 0 0 lime) contrast(150%); }
+  100% { transform: translate(0); filter: drop-shadow(8px 0 0 #ff00e1) drop-shadow(-8px 0 0 lime) contrast(150%); }
+}
+
+@keyframes image-glitch-3 {
+  0%   { transform: translate(0); filter: drop-shadow(-6px 0 0 lime) drop-shadow(6px 0 0 #ff00e1) contrast(170%); }
+  20%  { transform: translate(-9px, 1px); filter: drop-shadow(-14px 0 0 lime) drop-shadow(14px 0 0 #ff00e1) contrast(180%); }
+  40%  { transform: translate(6px, -1px); filter: drop-shadow(-3px 0 0 lime) drop-shadow(3px 0 0 #ff00e1) contrast(160%); }
+  60%  { transform: translate(-4px, 2px); filter: drop-shadow(-10px 0 0 lime) drop-shadow(10px 0 0 #ff00e1) contrast(175%); }
+  80%  { transform: translate(8px, -2px); filter: drop-shadow(-5px 0 0 lime) drop-shadow(5px 0 0 #ff00e1) contrast(170%); }
+  100% { transform: translate(0); filter: drop-shadow(-6px 0 0 lime) drop-shadow(6px 0 0 #ff00e1) contrast(170%); }
+}
+
+
+.imageGlitch::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+  z-index: 10;
+
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.05) 0px,
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+
+  animation: scan-flicker 2s infinite;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
