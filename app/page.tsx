@@ -1,218 +1,21 @@
-/*
-"use client";
-
-import styles from "./Glitch.module.scss";
-import { Pixelify_Sans } from "next/font/google";
-import Link from "next/link";
-import React, { useEffect, useRef } from "react";
-
-const pixelifySans = Pixelify_Sans({ subsets: ["latin"] });
-
-  export default function Home() {
-  return (
-    <>
-      <Navbar />
-
-      <div
-        className={styles.wrapper}
-       style={{
-    height: "100vh",
-    position: "relative",
-    paddingTop: "20vh",
-    paddingLeft: "1vw",
-    textAlign: "center",
-  }}
-      >
-    
-        <div
-          style={{
-            position: "relative",
-            minHeight: "60vh",
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-      
-          <div
-            className={styles.imageGlitch}
-            style={{
-              position: "absolute",
-              bottom: "7vh",
-              left: "39%",
-              transform: "translateX(-50%)", rotate: "-7deg",
-              zIndex: 10,
-            }}
-          >
-            <img src="/images/hmmm.png" className={styles.baseImg} />
-            <img src="/images/hmmm.png" className={styles.glitchImg1} />
-            <img src="/images/hmmm.png" className={styles.glitchImg2} />
-            <img src="/images/hmmm.png" className={styles.glitchImg3} />
-          </div>
-
-       
-          <div style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
-            
-          
-            <div
-              className={pixelifySans.className}
-              style={{
-                color: "#93FF50",
-                marginBottom: "2rem",
-                fontSize: "clamp(.09rem, 2vw, 1.4rem)",
-                position: "relative",
-                left: "-24vw",
-              }}
-            >
-              Hi I'm
-            </div>
-
-          
-            <p className={styles.glitch} data-text="PSYCHO">
-              Morsal <br /> Yosofi
-            </p>
-
-          
-            <div
-              className={pixelifySans.className}
-              style={{
-                color: "#93FF50",
-                marginBottom: "2rem",
-                fontSize: "clamp(1.4rem, 1.6vw, 2rem)",
-                position: "relative",
-                bottom: "-10vh",
-                left: "-16vw",
-              }}
-            >
-              Welcome to my portfolio :)
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div
-        className={pixelifySans.className}
-        style={{
-          position: "fixed",
-          right: "2vw",
-          top: "50%",
-          transform: "translateY(-50%)",
-          display: "flex",
-          flexDirection: "column",
-          gap: "2rem",
-          zIndex: 9999,
-        }}
-      >
-        <div
-          style={{
-            writingMode: "vertical-rl",
-            transform: "rotate(180deg)",
-            color: "#93FF50",
-            fontSize: "clamp(0.5rem, 1.4vw, 1rem)",
-            letterSpacing: "0.2em",
-          }}
-        >
-          Front End Developer
-        </div>
-
-        <div
-          style={{
-            writingMode: "vertical-rl",
-            transform: "rotate(180deg)",
-            color: "#93FF50",
-            fontSize: "clamp(0.5rem, 1.4vw, 1rem)",
-            letterSpacing: "0.2em",
-          }}
-        >
-          Media Creation Student
-        </div>
-      </div>
-    </>
-  );
-}
-export function Navbar() {
-  return (
-    <div
-      className={pixelifySans.className}
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexWrap: "wrap",
-        gap: "clamp(1rem, 4vw, 3rem)",
-        padding: "1rem 2rem",
-        zIndex: 9999,
-      }}
-    >
-      <Link
-        href="/about"
-        style={{
-          color: "#93FF50",
-          textDecoration: "none",
-          fontSize: "clamp(0.9rem, 2vw, 1.1rem)",
-        }}
-      >
-        About
-      </Link>
-
-      <Link
-        href="/projects"
-        style={{
-          color: "#93FF50",
-          textDecoration: "none",
-          fontSize: "clamp(0.9rem, 2vw, 1.1rem)",
-        }}
-      >
-        Projects
-      </Link>
-
-      <Link
-        href="/contact"
-        style={{
-          color: "#93FF50",
-          textDecoration: "none",
-          fontSize: "clamp(0.9rem, 2vw, 1.1rem)",
-        }}
-      >
-        Contact
-      </Link>
-
-
-   <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          height: "1px",
-          backgroundColor: "#93FF50",
-        }}
-      />
-    </div>
-  );
-}
-*/
-
 "use client";
  
 import { useRef, useEffect, useState } from "react";
 import styles from "./Glitch.module.scss";
-import { Pixelify_Sans, Krona_One } from "next/font/google";
+import { Pixelify_Sans, Space_Grotesk, Bungee_Shade } from "next/font/google";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
  
 gsap.registerPlugin(ScrollTrigger);
  
-const pixelifySans = Pixelify_Sans({ subsets: ["latin"] });
-const kronaOne = Krona_One({ subsets: ["latin"], weight: "400" });
+const pixelify   = Pixelify_Sans({ subsets: ["latin"] });
+const grotesk    = Space_Grotesk({ subsets: ["latin"] });
+const bungeeShade = Bungee_Shade({ subsets: ["latin"], weight: "400" });
+ 
+const BG       = "#070027";  // deep navy-black
+const CYAN     = "#93FF50";  // electric cyan  (replaces green #93FF50)
+const ORANGE   = "#FF0DDB";  // neon orange    (replaces pink #FF0DDB)
  
 const STARS = [
   { top: "5%",  left: "10%" }, { top: "12%", left: "80%" }, { top: "18%", left: "55%" },
@@ -226,107 +29,89 @@ const STARS = [
  
 const PROJECTS = [
   {
-    title: "cat adoption website",
-    images: ["/images/pic1.png", "/images/pic2.png", "/images/pic3.png", "/images/pic4.png", "/images/pic5.png"],
-    tags: ["HTML/CSS", "Javascript", "Next.js"],
-    description: "In semester 3 of Front-End Development, I built a cat adoption website with Next.js as a practice project.",
-    detail: `During semester 3 of Front-End Development, I created a cat adoption website using Next.js as a personal practice project to improve both my development and design skills. The goal of the website was to simulate an online platform where users could browse cats available for adoption, view information about each cat, and explore a visually engaging and user-friendly interface.
+    title: "Cat Adoption Website",
+    year: "2024",
+    images: ["/images/pic1.png","/images/pic2.png","/images/pic3.png","/images/pic4.png","/images/pic5.png"],
+    tags: ["HTML/CSS","JavaScript","Next.js"],
+    description: "A Next.js practice project — a non-traditional cat adoption platform with a creative layout designed to stand out from standard shelter sites.",
+    detail: `During semester 3 of Front-End Development, I created a cat adoption website using Next.js as a personal practice project to improve both my development and design skills.
  
-One of the main reasons for creating this project was to practice web design and experiment with a more unique visual style. Most cat adoption websites tend to use very simple and traditional layouts, which often feel repetitive or boring. For this project, I wanted to take a different approach by creating a more modern and non-traditional design that felt more creative and interactive while still remaining easy to navigate.
+Most cat adoption websites use very simple and traditional layouts that feel repetitive or boring. For this project, I wanted a more modern, non-traditional design that felt creative and interactive while remaining easy to navigate.
  
-Although the website was not fully functional, the project gave me valuable hands-on experience with building pages and components in Next.js, working with routing, styling, and structuring a larger web application. I also practiced creating responsive layouts, organizing reusable components, and combining design ideas with front-end development. Through this project, I improved my understanding of modern web development workflows, strengthened my problem-solving skills, and gained more confidence in both coding and UI/UX design.`,
+Although the website was not fully functional, the project gave me hands-on experience building pages and components in Next.js, working with routing, styling, and structuring a larger web application. I also practised creating responsive layouts, organising reusable components, and combining design ideas with front-end development.`,
   },
   {
-    title: "portfolio website 2025",
-    images: ["/images/pic6.png", "/images/pic7.png", "/images/pic8.png", "/images/pic9.png"],
-    tags: ["React", "SCSS", "Next.js"],
-    description: "During semester 3, I created my personal showcase portfolio using Next.js to present my projects, skills, and development experience in a creative and professional way. I focused on building a responsive and interactive website with a fun and interesting design.",
-    detail: `During semester 3, I created my personal showcase portfolio using Next.js. The purpose of the project was to present my work, skills, and development experience in a professional but creative way. I also wanted the website to have a fun and interesting design instead of a standard portfolio layout, so I focused on making it visually engaging and unique while still keeping it easy to navigate.
+    title: "Portfolio Website 2025",
+    year: "2025",
+    images: ["/images/pic6.png","/images/pic7.png","/images/pic8.png","/images/pic9.png"],
+    tags: ["React","SCSS","Next.js"],
+    description: "Personal showcase portfolio built with Next.js — responsive, animated, and deliberately off-template. Focused on combining strong UI/UX with expressive visual design.",
+    detail: `During semester 3, I created my personal showcase portfolio using Next.js. I wanted the website to have a fun, interesting design instead of a standard portfolio layout, so I focused on making it visually engaging and unique while still keeping it easy to navigate.
  
-This project allowed me to further improve my front-end development skills by working with Next.js to build a responsive and interactive website. I practiced structuring pages, creating reusable components, and organizing content in a way that clearly showcased my projects and abilities. Alongside the technical side of development, I spent time experimenting with layouts, animations, color choices, and overall UI/UX design to give the portfolio more personality and make it stand out from more traditional portfolio websites.
+This project improved my front-end skills through building a responsive, interactive website. I practised structuring pages, creating reusable components, and combining design ideas with front-end development.
  
-Building this portfolio also helped me better understand how to combine functionality with design to create a polished user experience. Through the process, I improved my skills in responsive web design, component-based development, and creative problem-solving while gaining more confidence in presenting my work through a modern web application.`,
+Building this portfolio helped me better understand how to combine functionality with design to create a polished user experience. Through the process I improved my skills in responsive web design, component-based development, and creative problem-solving.`,
   },
   {
-    title: "logo's and poster",
-    images: ["/images/pic10.png", "/images/pic11.png", "/images/pic12.png"],
-    tags: ["Figma", "Illustrator", "Photoshop"],
-    description: "In semester 4 of Media Creation, I worked on a group project for the client Join Us, where we developed a solution aimed at helping people who struggle with loneliness or have difficulty making friends.",
-    detail: `For our solution, we created a game called Kauwe Bende, an Uno-inspired card game designed to help people who struggle with loneliness or social interaction feel more comfortable meeting and talking to new people. The game included fun and accessible icebreaker questions that encouraged conversation, interaction, and teamwork in a relaxed and playful way. Our goal was to create something approachable and entertaining that could reduce social pressure and make starting conversations feel more natural and less intimidating.
+    title: "Logos & Poster — Kauwe Bende",
+    year: "2025",
+    images: ["/images/pic10.png","/images/pic11.png","/images/pic12.png"],
+    tags: ["Figma","Illustrator","Photoshop"],
+    description: "Visual identity for Kauwe Bende, an Uno-inspired card game for the Join Us client — helping people who struggle with loneliness connect through play.",
+    detail: `For semester 4 Media Creation, our group created Kauwe Bende for the client Join Us — an Uno-inspired card game designed to help people who struggle with loneliness.
  
-During this group project, I mainly focused on the visual and creative side of the development process. I designed logos, posters, and multiple prototypes to help shape the identity and presentation of the game. To create these designs and prototypes, I used tools such as Figma and other design software to experiment with layouts, branding, and visual concepts. This allowed me to further develop my skills in graphic design, branding, prototyping, and UI/UX design while working within a team environment. I also gained experience translating ideas into visual concepts and creating designs that matched the friendly and social atmosphere we wanted the game to have.
+I focused on the visual side: designing logos, posters, and multiple prototypes using Figma and other design software. This shaped the game's identity and presentation, and allowed me to develop my skills in graphic design, branding, and UI/UX.
  
-Throughout the project, I improved my collaboration and communication skills by working closely with my teammates and contributing to both the creative process and the overall concept development.`,
+Throughout the project I improved my collaboration skills by working closely with teammates, contributing to both the creative process and overall concept development.`,
   },
 ];
  
-// IMAGE CAROUSEL
-function ImageCarousel({ images, height = "18rem" }: { images: string[]; height?: string }) {
-  const [idx, setIdx] = useState(0);
-  const prev = () => setIdx((i) => (i - 1 + images.length) % images.length);
-  const next = () => setIdx((i) => (i + 1) % images.length);
+const SKILLS = ["HTML / CSS","JavaScript","Python","Networking","Git / GitHub","UI/UX Design","Responsive Design","Figma","Next.js"];
+const EXPERIENCE = [
+  { school: "Commanderij College", detail: "HAVO" },
+  { school: "Fontys — Semester 1–2", detail: "Infrastructure & Cybersecurity" },
+  { school: "Fontys — Semester 3–4", detail: "Front-End Development & Media Design" },
+];
  
+// ── IMAGE CAROUSEL ──────────────────────────────────────────────────────────
+function ImageCarousel({ images, height = "260px" }: { images: string[]; height?: string }) {
+  const [idx, setIdx] = useState(0);
   return (
-    <div style={{ position: "relative", flex: "2 1 300px", height, borderRadius: "1rem", overflow: "hidden", background: "#1a1a2e" }}>
-      <img src={images[idx]} alt="" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
-      <button onClick={prev} style={{ position: "absolute", left: "0.6rem", top: "50%", transform: "translateY(-50%)", background: "rgba(0,0,0,0.6)", border: "1px solid #93FF50", color: "#93FF50", width: "2rem", height: "2rem", borderRadius: "4px", cursor: "pointer", fontSize: "1.2rem", display: "flex", alignItems: "center", justifyContent: "center" }}>&#8249;</button>
-      <button onClick={next} style={{ position: "absolute", right: "0.6rem", top: "50%", transform: "translateY(-50%)", background: "rgba(0,0,0,0.6)", border: "1px solid #93FF50", color: "#93FF50", width: "2rem", height: "2rem", borderRadius: "4px", cursor: "pointer", fontSize: "1.2rem", display: "flex", alignItems: "center", justifyContent: "center" }}>&#8250;</button>
-      <div style={{ position: "absolute", bottom: "0.6rem", left: "50%", transform: "translateX(-50%)", display: "flex", gap: "0.4rem" }}>
-        {images.map((_, i) => (
-          <button key={i} onClick={() => setIdx(i)} style={{ width: i === idx ? "1.2rem" : "0.5rem", height: "0.5rem", borderRadius: "999px", background: i === idx ? "#93FF50" : "rgba(255,255,255,0.4)", border: "none", cursor: "pointer", padding: 0, transition: "all 0.2s" }} />
+    <div style={{ position:"relative", height, borderRadius:"6px", overflow:"hidden", background:"rgba(7,0,39,0.8)", border:"1px solid rgba(147,255,80,0.2)", flexShrink:0 }}>
+      <img src={images[idx]} alt="" style={{ width:"100%", height:"100%", objectFit:"contain", display:"block" }} />
+      <button onClick={() => setIdx(i => (i-1+images.length)%images.length)} style={{ position:"absolute", left:"0.75rem", top:"50%", transform:"translateY(-50%)", background:"rgba(7,0,39,0.85)", border:"1px solid #93FF50", color:"#93FF50", width:"2rem", height:"2rem", borderRadius:"3px", cursor:"pointer", fontSize:"1.1rem", display:"flex", alignItems:"center", justifyContent:"center" }}>&#8249;</button>
+      <button onClick={() => setIdx(i => (i+1)%images.length)} style={{ position:"absolute", right:"0.75rem", top:"50%", transform:"translateY(-50%)", background:"rgba(7,0,39,0.85)", border:"1px solid #93FF50", color:"#93FF50", width:"2rem", height:"2rem", borderRadius:"3px", cursor:"pointer", fontSize:"1.1rem", display:"flex", alignItems:"center", justifyContent:"center" }}>&#8250;</button>
+      <div style={{ position:"absolute", bottom:"0.65rem", left:"50%", transform:"translateX(-50%)", display:"flex", gap:"0.35rem" }}>
+        {images.map((_,i) => (
+          <button key={i} onClick={() => setIdx(i)} style={{ width:i===idx?"1.2rem":"0.4rem", height:"0.4rem", borderRadius:"999px", background:i===idx?"#93FF50":"rgba(147,255,80,0.25)", border:"none", cursor:"pointer", padding:0, transition:"all 0.2s" }} />
         ))}
       </div>
     </div>
   );
 }
  
-// CYBERPUNK DIVIDER
-function CyberpunkLine() {
-  return (
-    <div style={{ width: "100%", padding: "1.5rem 0", overflow: "hidden" }}>
-      <svg width="100%" height="60" viewBox="0 0 1200 60" preserveAspectRatio="none" style={{ display: "block" }}>
-        <line x1="0"    y1="22" x2="620"  y2="22" stroke="#93FF50" strokeWidth="1.2" />
-        <line x1="620"  y1="22" x2="730"  y2="42" stroke="#93FF50" strokeWidth="1.2" />
-        <line x1="730"  y1="42" x2="1080" y2="42" stroke="#93FF50" strokeWidth="1.2" />
-        <line x1="1080" y1="42" x2="1200" y2="42" stroke="#93FF50" strokeWidth="7" />
-      </svg>
-    </div>
-  );
-}
- 
-// CYBERPUNK MODAL
+// ── PROJECT MODAL ───────────────────────────────────────────────────────────
 function ProjectModal({ project, onClose }: { project: typeof PROJECTS[0]; onClose: () => void }) {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, []);
   return (
-    <div onClick={onClose} style={{ position: "fixed", inset: 0, zIndex: 99999, background: "rgba(0,0,0,0.85)", display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5rem" }}>
-      <div
-        onClick={(e) => e.stopPropagation()}
-        style={{
-          position: "relative",
-          width: "min(1160px, 97vw)",
-          maxHeight: "90vh",
-          overflowY: "scroll",
-          scrollbarWidth: "none",
-          background: "#0d0d1a",
-          border: "1px solid #93FF50",
-          padding: "3.5rem 4rem",
-          clipPath: "polygon(0% 2.5rem, 1rem 0.6rem, 3rem 0%, calc(100% - 1rem) 0%, 100% 1rem, 100% calc(100% - 2.5rem), calc(100% - 1rem) calc(100% - 0.6rem), calc(100% - 3rem) 100%, 1rem 100%, 0% calc(100% - 1rem))",
-        }}
-      >
-        <button onClick={onClose} className={pixelifySans.className} style={{ position: "absolute", top: "1.2rem", right: "1.8rem", background: "none", border: "none", color: "#FF0DDB", fontSize: "1.3rem", cursor: "pointer" }}>&#10005;</button>
- 
-        <ImageCarousel images={project.images} height="420px" />
- 
-        <h3 className={kronaOne.className} style={{ color: "#93FF50", fontSize: "2rem", margin: "2rem 0 1.4rem 0" }}>{project.title}</h3>
- 
+    <div onClick={onClose} style={{ position:"fixed", inset:0, zIndex:99999, background:"rgba(7,0,39,0.95)", display:"flex", alignItems:"center", justifyContent:"center", padding:"1.5rem", backdropFilter:"blur(8px)" }}>
+      <div onClick={e => e.stopPropagation()} style={{ position:"relative", width:"min(1000px,95vw)", maxHeight:"88vh", overflowY:"auto", scrollbarWidth:"none", background:"#0d0d2e", border:"1px solid rgba(147,255,80,0.3)", borderRadius:"6px", padding:"clamp(2rem,5vw,3.5rem)" }}>
+        <button onClick={onClose} className={pixelify.className} style={{ position:"absolute", top:"1.25rem", right:"1.25rem", background:"none", border:"1px solid rgba(255,13,219,0.5)", color:"#FF0DDB", fontSize:"0.75rem", cursor:"pointer", padding:"0.3rem 0.8rem", letterSpacing:"0.1em", borderRadius:"2px" }}>✕ close</button>
+        <ImageCarousel images={project.images} height="380px" />
+        <div style={{ display:"flex", alignItems:"center", gap:"0.75rem", margin:"2.5rem 0 0.75rem 0" }}>
+          <span className={pixelify.className} style={{ color:"#FF0DDB", fontSize:"0.75rem", letterSpacing:"0.2em" }}>{project.year}</span>
+          <div style={{ flex:1, height:"1px", background:"rgba(147,255,80,0.12)" }} />
+        </div>
+        <h3 className={grotesk.className} style={{ color:"#93FF50", fontSize:"clamp(1.4rem,3vw,2rem)", fontWeight:700, margin:"0 0 1.5rem 0" }}>{project.title}</h3>
         {project.detail.split("\n\n").map((para, i) => (
-          <p key={i} className={kronaOne.className} style={{ color: "#e5e7eb", fontSize: "0.64rem", lineHeight: "1.9", margin: "0 0 1.2rem 0", fontWeight: 400 }}>
-            {para}
-          </p>
+          <p key={i} className={grotesk.className} style={{ color:"rgba(255,255,255,0.7)", fontSize:"clamp(0.88rem,1.1vw,1rem)", lineHeight:"2", margin:"0 0 1.1rem 0", fontWeight:400, wordSpacing:"0.05em" }}>{para}</p>
         ))}
- 
-        <div style={{ display: "flex", gap: "0.8rem", flexWrap: "wrap" }}>
-          {project.tags.map((tag) => (
-            <span key={tag} className={pixelifySans.className} style={{ color: "#FF0DDB", border: "1px solid #FF0DDB", padding: "0.25rem 0.8rem", fontSize: "0.75rem", borderRadius: "4px" }}>{tag}</span>
+        <div style={{ display:"flex", gap:"0.5rem", flexWrap:"wrap", marginTop:"1.5rem" }}>
+          {project.tags.map(tag => (
+            <span key={tag} className={pixelify.className} style={{ color:"#FF0DDB", border:"1px solid rgba(255,13,219,0.45)", padding:"0.3rem 0.8rem", fontSize:"0.75rem", borderRadius:"2px" }}>{tag}</span>
           ))}
         </div>
       </div>
@@ -334,16 +119,46 @@ function ProjectModal({ project, onClose }: { project: typeof PROJECTS[0]; onClo
   );
 }
  
+// ── CYBERPUNK DIVIDER ───────────────────────────────────────────────────────
+function CyberpunkLine() {
+  return (
+    <div style={{ width:"100%", overflow:"hidden", lineHeight:0, position:"relative", zIndex:1 }}>
+      <svg width="100%" height="50" viewBox="0 0 1200 50" preserveAspectRatio="none" style={{ display:"block" }}>
+        <line x1="0"    y1="18" x2="580"  y2="18" stroke="#93FF50" strokeWidth="1.5" opacity="0.8"/>
+        <line x1="580"  y1="18" x2="680"  y2="36" stroke="#93FF50" strokeWidth="1.5" opacity="0.8"/>
+        <line x1="680"  y1="36" x2="1060" y2="36" stroke="#93FF50" strokeWidth="1.5" opacity="0.8"/>
+        <line x1="1060" y1="36" x2="1200" y2="36" stroke="#93FF50" strokeWidth="7"   opacity="0.9"/>
+      </svg>
+    </div>
+  );
+}
+ 
+// ── SECTION HEADER ──────────────────────────────────────────────────────────
+function SectionHeader({ label, title, outline }: { label: string; title: string; outline: string }) {
+  return (
+    <div style={{ marginBottom:"3rem" }}>
+      <span className={pixelify.className} style={{ color:"rgba(147,255,80,0.45)", fontSize:"0.78rem", letterSpacing:"0.3em", display:"block", marginBottom:"0.6rem" }}>{label}</span>
+      <h2 className={grotesk.className} style={{ fontSize:"clamp(2.8rem,6vw,4.5rem)", fontWeight:900, letterSpacing:"-0.03em", margin:0, lineHeight:1, display:"flex", gap:"0.3em", alignItems:"baseline", flexWrap:"wrap" }}>
+        <span style={{ color:"#FF0DDB" }}>{title}</span>
+        <span style={{ color:"transparent", WebkitTextStroke:"2px #93FF50" }}>{outline}</span>
+      </h2>
+      <div style={{ marginTop:"0.9rem", width:"10rem", height:"1px", background:"linear-gradient(to right, rgba(147,255,80,0.5), transparent)" }} />
+    </div>
+  );
+}
+ 
+// ── MAIN ────────────────────────────────────────────────────────────────────
 export default function Home() {
-  const sectionRef  = useRef<HTMLElement>(null);
+  const marqueeRef  = useRef<HTMLElement>(null);
   const trackRef    = useRef<HTMLDivElement>(null);
   const aboutRef    = useRef<HTMLElement>(null);
   const projectsRef = useRef<HTMLElement>(null);
   const contactRef  = useRef<HTMLElement>(null);
   const [activeProject, setActiveProject] = useState<typeof PROJECTS[0] | null>(null);
  
+  // Shorter marquee: only scrolls its own width (not doubled), so it ends quickly
   useGSAP(() => {
-    const section = sectionRef.current;
+    const section = marqueeRef.current;
     const track   = trackRef.current;
     if (!section || !track) return;
     gsap.to(track, {
@@ -352,7 +167,7 @@ export default function Home() {
       scrollTrigger: {
         trigger: section,
         start: "top top",
-        end: () => `+=${track.scrollWidth / 2}`,
+        end: () => `+=${track.scrollWidth / 4}`, // ← shorter scroll distance = exits faster
         scrub: 1,
         pin: true,
         anticipatePin: 1,
@@ -361,7 +176,9 @@ export default function Home() {
   });
  
   const scrollTo = (ref: React.RefObject<HTMLElement | null>) =>
-    ref.current?.scrollIntoView({ behavior: "smooth" });
+    ref.current?.scrollIntoView({ behavior:"smooth" });
+ 
+  const pad = "clamp(2rem, 7vw, 6rem)";
  
   return (
     <>
@@ -370,113 +187,173 @@ export default function Home() {
         onProjects={() => scrollTo(projectsRef)}
         onContact={()  => scrollTo(contactRef)}
       />
- 
       {activeProject && <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />}
  
-      {/* global stars */}
-      <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none" }}>
+      {/* fixed background colour + stars — sits behind everything */}
+      <div style={{ position:"fixed", inset:0, zIndex:0, background:BG, pointerEvents:"none" }} />
+      <div style={{ position:"fixed", inset:0, zIndex:1, pointerEvents:"none" }}>
         {STARS.map((pos, i) => (
-          <div key={i} style={{ position: "absolute", top: pos.top, left: pos.left, color: "white", fontSize: i % 3 === 0 ? "1rem" : i % 3 === 1 ? "0.5rem" : "0.7rem", opacity: 0.35 + (i % 3) * 0.1 }}>&#10022;</div>
+          <div key={i} style={{
+            position:"absolute", top:pos.top, left:pos.left,
+            color:"white",
+            fontSize:i%3===0?"1rem":i%3===1?"0.5rem":"0.7rem",
+            opacity:0.38 + (i%3)*0.12,
+          }}>&#10022;</div>
         ))}
       </div>
  
-      {/* HERO */}
-      <div className={styles.wrapper} style={{ height: "100vh", position: "relative", zIndex: 1, paddingTop: "20vh", paddingLeft: "1vw", textAlign: "center" }}>
-        <div style={{ position: "relative", minHeight: "60vh", width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-          <div className={styles.imageGlitch} style={{ position: "absolute", bottom: "7vh", left: "39%", transform: "translateX(-50%)", rotate: "-7deg", zIndex: 10 }}>
-            <img src="/images/hmmm.png" className={styles.baseImg} alt="" />
-            <img src="/images/hmmm.png" className={styles.glitchImg1} alt="" />
-            <img src="/images/hmmm.png" className={styles.glitchImg2} alt="" />
-            <img src="/images/hmmm.png" className={styles.glitchImg3} alt="" />
+      {/* ── HERO ─────────────────────────────────────────────────────────── */}
+      <div className={styles.wrapper} style={{ height:"100vh", background:"transparent", position:"relative", zIndex:1, overflow:"hidden", display:"flex", alignItems:"center", paddingTop:"80px" }}>
+ 
+        <div style={{ position:"relative", zIndex:2, width:"100%", display:"flex", alignItems:"center", paddingLeft:"clamp(2rem,7vw,6rem)", paddingRight:"clamp(2rem,7vw,6rem)", gap:"2rem" }}>
+ 
+          {/* LEFT: text */}
+          <div style={{ flex:"1 1 0", minWidth:0 }}>
+ 
+            {/* "hi i'm :)" tag */}
+            <div className={pixelify.className} style={{ color:"#FF0DDB", fontSize:"clamp(0.9rem,1.6vw,1.2rem)", marginBottom:"1rem", display:"inline-block", border:"1px solid rgba(255,13,219,0.5)", padding:"0.2rem 0.85rem", borderRadius:"2px", rotate:"-1.5deg", letterSpacing:"0.08em" }}>
+              hi i&apos;m :)
+            </div>
+ 
+            {/* big glitch name — Bungee Shade with glitch effect */}
+            <div style={{ marginBottom:"0.4rem" }}>
+              <p
+                className={`${styles.glitch} ${bungeeShade.className}`}
+                data-text="MORSAL"
+                style={{ fontSize:"clamp(4rem,10vw,9rem)", margin:0, color:"#fff", lineHeight:0.9 }}
+              >
+                MORSAL
+              </p>
+              <p
+                className={grotesk.className}
+                style={{ fontSize:"clamp(4.5rem,11vw,10rem)", fontWeight:900, letterSpacing:"-0.04em", margin:0, color:"transparent", WebkitTextStroke:"2px #93FF50", lineHeight:0.9, marginLeft:"clamp(0.5rem,2vw,2.5rem)" }}
+              >
+                YOSOFI<span style={{ color:"#FF0DDB", WebkitTextStroke:"0" }}>.</span>
+              </p>
+            </div>
+ 
+            {/* subtitle */}
+            <div className={pixelify.className} style={{ color:"#93FF50", fontSize:"clamp(0.82rem,1.3vw,1rem)", letterSpacing:"0.12em", margin:"1.8rem 0 2.5rem 0.2rem" }}>
+              front-end developer &amp; media creator ✦
+            </div>
+ 
+            {/* CTA buttons */}
+            <div style={{ display:"flex", alignItems:"center", gap:"1rem", flexWrap:"wrap" }}>
+              <button
+                onClick={() => scrollTo(projectsRef)}
+                className={pixelify.className}
+                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background="#93FF50"; (e.currentTarget as HTMLButtonElement).style.color=BG; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background="transparent"; (e.currentTarget as HTMLButtonElement).style.color="#93FF50"; }}
+                style={{ background:"transparent", border:"1px solid #93FF50", color:"#93FF50", padding:"0.75rem 1.8rem", fontSize:"clamp(0.75rem,1vw,0.88rem)", letterSpacing:"0.12em", cursor:"pointer", borderRadius:"2px", transition:"all 0.18s" }}
+              >
+                view my work →
+              </button>
+              <button
+                onClick={() => scrollTo(contactRef)}
+                className={pixelify.className}
+                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background="#FF0DDB"; (e.currentTarget as HTMLButtonElement).style.color=BG; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background="transparent"; (e.currentTarget as HTMLButtonElement).style.color="#FF0DDB"; }}
+                style={{ background:"transparent", border:"1px solid #FF0DDB", color:"#FF0DDB", padding:"0.75rem 1.8rem", fontSize:"clamp(0.75rem,1vw,0.88rem)", letterSpacing:"0.12em", cursor:"pointer", borderRadius:"2px", transition:"all 0.18s" }}
+              >
+                get in touch
+              </button>
+            </div>
+ 
           </div>
-          <div style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <div className={pixelifySans.className} style={{ color: "#93FF50", marginBottom: "2rem", fontSize: "clamp(.09rem, 2vw, 1.4rem)", position: "relative", left: "-24vw" }}>Hi I&apos;m</div>
-            <p className={styles.glitch} data-text="PSYCHO">Morsal <br /> Yosofi</p>
-            <div className={pixelifySans.className} style={{ color: "#93FF50", marginBottom: "2rem", fontSize: "clamp(1.4rem, 1.6vw, 2rem)", position: "relative", bottom: "-10vh", left: "-16vw" }}>Welcome to my portfolio :)</div>
+ 
+          {/* RIGHT: glitching character */}
+          <div style={{ flex:"0 0 auto", position:"relative", alignSelf:"flex-end", marginBottom:"3vh", marginRight:"5vw" }}>
+            <div className={pixelify.className} style={{ position:"absolute", top:"-2.2rem", right:"0", color:"#FF0DDB", fontSize:"0.68rem", letterSpacing:"0.12em", border:"1px solid rgba(255,13,219,0.45)", padding:"0.2rem 0.65rem", borderRadius:"2px", rotate:"2deg", whiteSpace:"nowrap" }}>
+              ✦ media creation student
+            </div>
+            <div className={styles.imageGlitch} style={{ rotate:"-7deg" }}>
+              <img src="/images/hmmm.png" className={styles.baseImg}    alt="" style={{ width:"clamp(160px,20vw,280px)", imageRendering:"pixelated", display:"block" }} />
+              <img src="/images/hmmm.png" className={styles.glitchImg1} alt="" style={{ width:"clamp(160px,20vw,280px)", imageRendering:"pixelated", display:"block" }} />
+              <img src="/images/hmmm.png" className={styles.glitchImg2} alt="" style={{ width:"clamp(160px,20vw,280px)", imageRendering:"pixelated", display:"block" }} />
+              <img src="/images/hmmm.png" className={styles.glitchImg3} alt="" style={{ width:"clamp(160px,20vw,280px)", imageRendering:"pixelated", display:"block" }} />
+            </div>
           </div>
+        </div>
+ 
+        {/* scroll hint bottom left */}
+        <div className={pixelify.className} style={{ position:"absolute", bottom:"2rem", left:"clamp(2rem,7vw,6rem)", display:"flex", alignItems:"center", gap:"0.6rem", zIndex:2, color:"rgba(147,255,80,0.3)", fontSize:"0.65rem", letterSpacing:"0.2em" }}>
+          <div style={{ width:"1px", height:"1.75rem", background:"rgba(147,255,80,0.25)" }} />
+          scroll ↓
         </div>
       </div>
  
-      {/* right side text */}
-      <div className={pixelifySans.className} style={{ position: "fixed", right: "2vw", top: "50%", transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "2rem", zIndex: 9999 }}>
-        <div style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", color: "#93FF50", fontSize: "clamp(0.5rem, 1.4vw, 1rem)", letterSpacing: "0.2em" }}>Front End Developer</div>
-        <div style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", color: "#93FF50", fontSize: "clamp(0.5rem, 1.4vw, 1rem)", letterSpacing: "0.2em" }}>Media Creation Student</div>
+      {/* vertical side labels — fixed right */}
+      <div className={pixelify.className} style={{ position:"fixed", right:"2vw", top:"50%", transform:"translateY(-50%)", display:"flex", flexDirection:"column", gap:"2rem", zIndex:9999 }}>
+        <div style={{ writingMode:"vertical-rl", transform:"rotate(180deg)", color:"#93FF50", fontSize:"clamp(0.5rem,1.4vw,1rem)", letterSpacing:"0.2em" }}>Front End Developer</div>
+        <div style={{ writingMode:"vertical-rl", transform:"rotate(180deg)", color:"#93FF50", fontSize:"clamp(0.5rem,1.4vw,1rem)", letterSpacing:"0.2em" }}>Media Creation Student</div>
       </div>
  
-      {/* HORIZONTAL SCROLL */}
-      <section ref={sectionRef} style={{ overflow: "hidden", position: "relative", zIndex: 1 }}>
-        <div ref={trackRef} className={pixelifySans.className} style={{ display: "flex", alignItems: "center", height: "100vh", width: "max-content", gap: "4rem", paddingLeft: "4rem" }}>
-          {["Showcase", "Portfolio 2026", "Showcase", "Portfolio 2026", "Showcase", "Portfolio 2026", "Showcase", "Portfolio 2026"].map((word, i) => (
-            <span key={i} style={{ fontSize: "clamp(80px, 12vw, 160px)", whiteSpace: "nowrap", color: i % 2 === 0 ? "#070027" : "#FF0DDB", WebkitTextStroke: i % 2 === 0 ? "2px #93FF50" : undefined }}>{word}</span>
+      <CyberpunkLine />
+ 
+      {/* ── HORIZONTAL SCROLL MARQUEE (shorter) ──────────────────────────── */}
+      <section ref={marqueeRef} style={{ overflow:"hidden", position:"relative", zIndex:1, borderTop:"1px solid rgba(147,255,80,0.08)", borderBottom:"1px solid rgba(147,255,80,0.08)" }}>
+        <div ref={trackRef} className={grotesk.className} style={{ display:"flex", alignItems:"center", height:"100vh", width:"max-content", gap:"3rem", paddingLeft:"3rem" }}>
+          {/* Only 4 words instead of 8 — half the scroll length */}
+          {["Showcase","Portfolio 2026","Showcase","Portfolio 2026","Showcase","Portfolio 2026","Showcase","Portfolio 2026"].map((word, i) => (
+            <span key={i} style={{
+              fontSize:"clamp(70px,11vw,130px)",
+              fontWeight:900,
+              letterSpacing:"-0.03em",
+              whiteSpace:"nowrap",
+              color:i%2===0?"transparent":"#FF0DDB",
+              WebkitTextStroke:i%2===0?"1.5px rgba(147,255,80,0.5)":undefined,
+            }}>{word}</span>
           ))}
         </div>
       </section>
  
-      {/* CYBERPUNK DIVIDER */}
-      <div style={{ position: "relative", zIndex: 1 }}>
-        <CyberpunkLine />
-      </div>
+      <CyberpunkLine />
  
-      {/* ABOUT */}
-      <section ref={aboutRef} style={{ position: "relative", zIndex: 1, minHeight: "100vh", padding: "4rem 5rem 6rem", overflow: "hidden" }}>
-        <div style={{ position: "relative", zIndex: 10, marginBottom: "2.5rem" }}>
-          <h2 className={pixelifySans.className} style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)", fontWeight: "bold", margin: 0, display: "flex", gap: "0.3em", alignItems: "baseline" }}>
-            <span style={{ color: "#FF0DDB" }}>about</span>
-            <span style={{ color: "transparent", WebkitTextStroke: "2px #93FF50" }}>me</span>
-          </h2>
-          <div style={{ marginTop: "0.75rem", borderTop: "1px solid #9ca3af", width: "12rem" }} />
-        </div>
+      {/* ── ABOUT ────────────────────────────────────────────────────────── */}
+      <section ref={aboutRef} style={{ background:BG, position:"relative", zIndex:1, padding:`4.5rem ${pad} 4.5rem` }}>
+        <SectionHeader label="— who am i" title="about" outline="me" />
  
-        <div style={{ position: "relative", zIndex: 10, display: "flex", gap: "4rem", alignItems: "flex-start" }}>
-          <div className={kronaOne.className} style={{ flex: "1 1 0", fontSize: "clamp(0.6rem, 0.85vw, 0.72rem)", lineHeight: "1.8", color: "#e5e7eb", display: "flex", flexDirection: "column", gap: "0.8rem", fontWeight: 400 }}>
-            <p style={{ margin: 0 }}>Hi, my name is Morsal Yosofi and I am a 20-year-old ICT student with a strong passion for technology and building practical digital solutions. I enjoy learning how systems work behind the scenes and turning ideas into functional applications.</p>
-            <p style={{ margin: 0 }}>During my studies, I have gained experience with both front-end and back-end development. I am particularly interested in UI and UX design and how thoughtful interfaces can improve the overall user experience.</p>
-            <p style={{ margin: 0 }}>I enjoy challenging myself with new projects, experimenting with different tools, and continuously learning new technologies to improve my technical skills. My goal is to keep growing as a developer and to keep learning throughout my career.</p>
+        {/* bio + image — clean two column */}
+        <div style={{ display:"flex", gap:"5rem", alignItems:"center", marginBottom:"3.5rem" }}>
+          <div style={{ flex:"1 1 0", display:"flex", flexDirection:"column", gap:"1.4rem" }}>
+            <p className={grotesk.className} style={{ color:"rgba(255,255,255,0.75)", fontSize:"clamp(1rem,1.2vw,1.1rem)", lineHeight:"2", margin:0, fontWeight:400, wordSpacing:"0.05em" }}>
+              Hi, my name is Morsal Yosofi — a 20-year-old ICT student with a passion for building things that look good and work well. I enjoy learning how systems work and turning ideas into real digital products.
+            </p>
+            <p className={grotesk.className} style={{ color:"rgba(255,255,255,0.75)", fontSize:"clamp(1rem,1.2vw,1.1rem)", lineHeight:"2", margin:0, fontWeight:400, wordSpacing:"0.05em" }}>
+              During my studies I&apos;ve worked across front-end development, back-end basics, and UI/UX design. I&apos;m particularly drawn to interfaces — how the way something looks and feels shapes the way people use it.
+            </p>
+            <p className={grotesk.className} style={{ color:"rgba(255,255,255,0.75)", fontSize:"clamp(1rem,1.2vw,1.1rem)", lineHeight:"2", margin:0, fontWeight:400, wordSpacing:"0.05em" }}>
+              I&apos;m always looking for the next project to push my skills further. My goal is to keep growing as a developer and designer throughout my career.
+            </p>
           </div>
-          <div style={{ flex: "0 0 auto", display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <img src="/images/hmmm.png" alt="Morsal" style={{ width: "clamp(130px, 16vw, 210px)", imageRendering: "pixelated" }} />
+          <div style={{ flex:"0 0 auto" }}>
+            <img src="/images/hmmm.png" alt="Morsal" style={{ width:"clamp(130px,14vw,200px)", imageRendering:"pixelated", display:"block" }} />
           </div>
         </div>
  
-        {/* SKILLS */}
-        <div style={{ position: "relative", zIndex: 10, marginTop: "3rem" }}>
-          <h3 className={pixelifySans.className} style={{ color: "transparent", WebkitTextStroke: "1.5px #93FF50", fontSize: "clamp(1.5rem, 3vw, 2.2rem)", margin: "0 0 1.5rem 0" }}>skills</h3>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", maxWidth: "600px" }}>
-            {["HTML/CSS", "Javascript", "Python", "IT Infrastructure & Networking", "Git / GitHub", "UI/UX Design Basics", "Responsive Design"].map((skill) => (
-              <span
-                key={skill}
-                className={kronaOne.className}
-                style={{
-                  border: "1px solid #FF0DDB",
-                  borderRadius: "999px",
-                  padding: "0.45rem 1.1rem",
-                  color: "#FF0DDB",
-                  fontSize: "clamp(0.58rem, 0.85vw, 0.72rem)",
-                  fontWeight: 400,
-                  background: "transparent",
-                }}
-              >{skill}</span>
+        {/* skills */}
+        <div style={{ marginBottom:"3rem" }}>
+          <div className={pixelify.className} style={{ color:"rgba(147,255,80,0.5)", fontSize:"0.75rem", letterSpacing:"0.28em", marginBottom:"1.2rem" }}>— skills</div>
+          <div style={{ display:"flex", flexWrap:"wrap", gap:"0.55rem" }}>
+            {SKILLS.map(skill => (
+              <span key={skill} className={pixelify.className} style={{ color:"#FF0DDB", border:"1px solid rgba(255,13,219,0.35)", padding:"0.4rem 1rem", fontSize:"0.78rem", borderRadius:"2px", background:"rgba(255,13,219,0.03)" }}>{skill}</span>
             ))}
           </div>
         </div>
  
-        {/* EXPERIENCE */}
-        <div style={{ position: "relative", zIndex: 10, marginTop: "3.5rem" }}>
-          <h3 className={pixelifySans.className} style={{ color: "transparent", WebkitTextStroke: "1.5px #93FF50", fontSize: "clamp(1.5rem, 3vw, 2.2rem)", margin: "0 0 1.5rem 0" }}>expierence</h3>
-          <div style={{ display: "flex", gap: "0", alignItems: "stretch" }}>
-            {[
-              { school: "Commanderij college", detail: "Havo" },
-              { school: "Fontys", detail: "semester 1 - 2\ninfrastructure and cybersecurity" },
-              { school: "Fontys", detail: "semester 3 - 4\nfront end development and media design" },
-            ].map((item, i, arr) => (
-              <div key={i} style={{ display: "flex", alignItems: "stretch", flex: 1 }}>
-                <div className={kronaOne.className} style={{ border: "1px solid #FF0DDB", borderRadius: "0.5rem", padding: "1rem 1.2rem", fontSize: "0.7rem", flex: 1, display: "flex", flexDirection: "column", gap: "0.4rem", fontWeight: 400 }}>
-                  <p style={{ margin: 0, color: "#e5e7eb" }}>{item.school}</p>
-                  <p style={{ margin: 0, color: "#9ca3af", whiteSpace: "pre-line" }}>{item.detail}</p>
+        {/* experience */}
+        <div>
+          <div className={pixelify.className} style={{ color:"rgba(147,255,80,0.5)", fontSize:"0.75rem", letterSpacing:"0.28em", marginBottom:"1.2rem" }}>— experience</div>
+          <div style={{ display:"flex", gap:"0", alignItems:"stretch" }}>
+            {EXPERIENCE.map((item, i, arr) => (
+              <div key={i} style={{ display:"flex", alignItems:"stretch", flex:1 }}>
+                <div className={grotesk.className} style={{ border:"1px solid rgba(255,13,219,0.3)", borderRadius:"0.5rem", padding:"1.2rem 1.5rem", flex:1, display:"flex", flexDirection:"column", gap:"0.4rem" }}>
+                  <p style={{ margin:0, color:"#e5e7eb", fontSize:"clamp(0.88rem,1vw,0.98rem)", fontWeight:600 }}>{item.school}</p>
+                  <p style={{ margin:0, color:"rgba(147,255,80,0.4)", fontSize:"0.75rem", letterSpacing:"0.04em", lineHeight:"1.7" }}>{item.detail}</p>
                 </div>
-                {i < arr.length - 1 && (
-                  <div style={{ width: "2rem", display: "flex", alignItems: "center", flexShrink: 0 }}>
-                    <div style={{ width: "100%", height: "1px", background: "#FF0DDB" }} />
+                {i < arr.length-1 && (
+                  <div style={{ width:"2rem", display:"flex", alignItems:"center", flexShrink:0 }}>
+                    <div style={{ width:"100%", height:"1px", background:"rgba(255,13,219,0.35)" }} />
                   </div>
                 )}
               </div>
@@ -485,109 +362,128 @@ export default function Home() {
         </div>
       </section>
  
-      {/* PROJECTS */}
-      <section ref={projectsRef} className={pixelifySans.className} style={{ position: "relative", zIndex: 1, minHeight: "100vh", padding: "6rem 5rem", overflow: "hidden" }}>
-        <div style={{ position: "relative", zIndex: 10, marginBottom: "4rem" }}>
-          <h2 style={{ fontSize: "clamp(3rem, 7vw, 5rem)", color: "#FF0DDB", margin: "0 0 1rem 0" }}>Projects</h2>
-          <div style={{ borderTop: "1px solid #9ca3af", width: "12rem" }} />
-        </div>
-        <div style={{ position: "relative", zIndex: 10, display: "flex", flexDirection: "column", gap: "3.5rem" }}>
+      <CyberpunkLine />
+ 
+      {/* ── PROJECTS ─────────────────────────────────────────────────────── */}
+      <section ref={projectsRef} style={{ background:BG, position:"relative", zIndex:1, padding:`4.5rem ${pad} 4.5rem` }}>
+        <SectionHeader label="— what i've built" title="my" outline="projects" />
+        <div style={{ display:"flex", flexDirection:"column" }}>
           {PROJECTS.map((project, i) => (
-            <div key={i} style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "2.5rem" }}>
-              <ImageCarousel images={project.images} />
-              <div style={{ flex: "1 1 200px" }}>
-                <h3 style={{ color: "#93FF50", fontSize: "1.25rem", marginBottom: "0.75rem" }}>{project.title}</h3>
-                <p className={kronaOne.className} style={{ color: "#d1d5db", fontSize: "0.72rem", marginBottom: "1.25rem", lineHeight: "1.75", fontWeight: 400 }}>
-                  {project.description}
-                </p>
-                <button onClick={() => setActiveProject(project)} className={pixelifySans.className} style={{ background: "none", border: "none", cursor: "pointer", color: "#FF0DDB", fontSize: "0.95rem", padding: 0, textDecoration: "underline", textUnderlineOffset: "4px" }}>
-                  learn more &#8594;
-                </button>
+            <div
+              key={i}
+              style={{ display:"grid", gridTemplateColumns:"1fr 1.3fr", gap:"4rem", alignItems:"center", padding:"3.5rem 1rem", borderTop:i>0?"1px solid rgba(147,255,80,0.08)":"none", cursor:"pointer", borderRadius:"6px", transition:"background 0.2s" }}
+              onClick={() => setActiveProject(project)}
+              onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background="rgba(147,255,80,0.03)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background="transparent"; }}
+            >
+              <div>
+                <div style={{ display:"flex", alignItems:"center", gap:"1rem", marginBottom:"1rem" }}>
+                  <span className={pixelify.className} style={{ color:"rgba(147,255,80,0.25)", fontSize:"0.68rem", letterSpacing:"0.25em" }}>0{i+1}</span>
+                  <span className={pixelify.className} style={{ color:"#FF0DDB", fontSize:"0.68rem", letterSpacing:"0.2em" }}>{project.year}</span>
+                </div>
+                <h3 className={grotesk.className} style={{ color:"#fff", fontSize:"clamp(1.2rem,2.2vw,1.7rem)", fontWeight:700, letterSpacing:"-0.02em", margin:"0 0 1rem 0" }}>{project.title}</h3>
+                <p className={grotesk.className} style={{ color:"rgba(255,255,255,0.5)", fontSize:"clamp(0.88rem,1vw,0.98rem)", lineHeight:"1.95", margin:"0 0 1.5rem 0", fontWeight:400, wordSpacing:"0.04em" }}>{project.description}</p>
+                <div style={{ display:"flex", gap:"0.45rem", flexWrap:"wrap", marginBottom:"1.75rem" }}>
+                  {project.tags.map(tag => (
+                    <span key={tag} className={pixelify.className} style={{ color:"#FF0DDB", border:"1px solid rgba(255,13,219,0.35)", padding:"0.3rem 0.75rem", fontSize:"0.72rem", borderRadius:"2px" }}>{tag}</span>
+                  ))}
+                </div>
+                <span className={pixelify.className} style={{ color:"#93FF50", fontSize:"0.82rem", letterSpacing:"0.1em", borderBottom:"1px solid rgba(147,255,80,0.4)", paddingBottom:"2px" }}>
+                  read more &#8594;
+                </span>
               </div>
+              <ImageCarousel images={project.images} height="clamp(200px,22vw,320px)" />
             </div>
           ))}
         </div>
       </section>
  
-      {/* CONTACT */}
-      <section ref={contactRef} className={pixelifySans.className} style={{ position: "relative", zIndex: 1, minHeight: "100vh", padding: "6rem 5rem", overflow: "hidden" }}>
-        <div style={{ marginBottom: "4rem" }}>
-          <h2 style={{ fontSize: "clamp(3rem, 7vw, 5rem)", color: "#FF0DDB", margin: "0 0 1rem 0" }}>contact</h2>
-          <div style={{ borderTop: "1px solid #9ca3af", width: "12rem" }} />
+      <CyberpunkLine />
+ 
+      {/* ── CONTACT ──────────────────────────────────────────────────────── */}
+      <section ref={contactRef} style={{ background:BG, position:"relative", zIndex:1, padding:`4.5rem ${pad} 4.5rem` }}>
+        <SectionHeader label="— say hello" title="get in" outline="touch" />
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"6rem", alignItems:"start" }}>
+          <div>
+            <p className={grotesk.className} style={{ color:"rgba(255,255,255,0.5)", fontSize:"clamp(0.9rem,1.2vw,1.05rem)", lineHeight:"2", margin:"0 0 3rem 0", fontWeight:400, wordSpacing:"0.05em" }}>
+              Want to work together or just say hello? Feel free to reach out — I&apos;m always open to new opportunities and fun projects. :)
+            </p>
+            <div style={{ display:"flex", flexDirection:"column" }}>
+              {[
+                { icon:"/images/pic15.png", label:"email",     value:"yosofimorsal@gmail.com" },
+                { icon:"/images/pic16.png", label:"phone",     value:"0641576530" },
+                { icon:"/images/pic17.png", label:"instagram", value:"@morsal_yosofi" },
+              ].map((item, i, arr) => (
+                <div key={item.label} style={{ display:"flex", alignItems:"center", gap:"1.5rem", padding:"1.4rem 0", borderBottom:i<arr.length-1?"1px solid rgba(147,255,80,0.08)":"none" }}>
+                  <div style={{ width:"40px", height:"40px", border:"1px solid rgba(147,255,80,0.18)", borderRadius:"4px", background:"rgba(147,255,80,0.04)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                    <img src={item.icon} alt={item.label} style={{ width:"18px", height:"18px", objectFit:"contain" }} />
+                  </div>
+                  <div>
+                    <div className={pixelify.className} style={{ color:"rgba(147,255,80,0.35)", fontSize:"0.65rem", letterSpacing:"0.2em", marginBottom:"0.2rem" }}>{item.label}</div>
+                    <div className={grotesk.className} style={{ color:"rgba(255,255,255,0.8)", fontSize:"clamp(0.88rem,1.1vw,1rem)", fontWeight:500 }}>{item.value}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+ 
+          {/* typographic decoration */}
+          <div style={{ display:"flex", flexDirection:"column", gap:"0.15rem", paddingTop:"0.5rem" }}>
+            <div className={grotesk.className} style={{ fontSize:"clamp(3rem,6vw,5.5rem)", fontWeight:900, letterSpacing:"-0.04em", lineHeight:0.88, color:"transparent", WebkitTextStroke:"1.5px rgba(147,255,80,0.18)" }}>let&apos;s</div>
+            <div className={grotesk.className} style={{ fontSize:"clamp(3rem,6vw,5.5rem)", fontWeight:900, letterSpacing:"-0.04em", lineHeight:0.88, color:"#93FF50" }}>work</div>
+            <div className={grotesk.className} style={{ fontSize:"clamp(3rem,6vw,5.5rem)", fontWeight:900, letterSpacing:"-0.04em", lineHeight:0.88, color:"transparent", WebkitTextStroke:"1.5px rgba(255,13,219,0.45)" }}>together</div>
+            <div className={grotesk.className} style={{ fontSize:"clamp(3rem,6vw,5.5rem)", fontWeight:900, letterSpacing:"-0.04em", lineHeight:0.88, color:"#FF0DDB" }}>:)</div>
+          </div>
         </div>
  
-        {/* two column: contact info left, image right */}
-        <div style={{ display: "flex", alignItems: "flex-start", gap: "4rem" }}>
-          {/* contact links */}
-          <div className={kronaOne.className} style={{ display: "flex", flexDirection: "column", gap: "2rem", color: "#d1d5db", fontSize: "clamp(0.7rem, 1.2vw, 0.85rem)", fontWeight: 400 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "1.2rem" }}>
-              <img src="/images/pic15.png" alt="email" style={{ width: "28px", height: "28px", objectFit: "contain" }} />
-              <span>yosofimorsal@gmail.com</span>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "1.2rem" }}>
-              <img src="/images/pic16.png" alt="phone" style={{ width: "28px", height: "28px", objectFit: "contain" }} />
-              <span>0641576530</span>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "1.2rem" }}>
-              <img src="/images/pic17.png" alt="social" style={{ width: "28px", height: "28px", objectFit: "contain" }} />
-              <span>@morsal_yosofi</span>
-            </div>
-          </div>
- 
-          {/* decorative character image on the right */}
-          <div style={{ flex: "0 0 auto", marginLeft: "34rem", alignSelf: "flex-start", marginTop: "-7rem" }}>
-            <img
-              src="/images/pic14.png"
-              alt=""
-              style={{ width: "clamp(120px, 14vw, 200px)", objectFit: "contain", display: "block" }}
-            />
-          </div>
+        {/* footer */}
+        <div style={{ marginTop:"4rem", paddingTop:"2rem", borderTop:"1px solid rgba(147,255,80,0.08)", display:"flex", justifyContent:"space-between", flexWrap:"wrap", gap:"1rem" }}>
+          <span className={pixelify.className} style={{ color:"rgba(147,255,80,0.2)", fontSize:"0.65rem", letterSpacing:"0.2em" }}>&#169; 2026 Morsal Yosofi</span>
+          <span className={pixelify.className} style={{ color:"rgba(147,255,80,0.2)", fontSize:"0.65rem", letterSpacing:"0.2em" }}>built with Next.js</span>
         </div>
       </section>
     </>
   );
 }
  
-// NAVBAR
-function Navbar({ onAbout, onProjects, onContact }: { onAbout: () => void; onProjects: () => void; onContact: () => void }) {
+// ── NAVBAR ──────────────────────────────────────────────────────────────────
+function Navbar({ onAbout, onProjects, onContact }: { onAbout:()=>void; onProjects:()=>void; onContact:()=>void }) {
   const [visible, setVisible] = useState(true);
-  const lastScrollY = useRef(0);
- 
+  const lastY = useRef(0);
   useEffect(() => {
-    const handleScroll = () => {
-      const currentY = window.scrollY;
-      if (currentY < 10 || currentY < lastScrollY.current) setVisible(true);
-      else setVisible(false);
-      lastScrollY.current = currentY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setVisible(y < 10 || y < lastY.current);
+      lastY.current = y;
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", onScroll, { passive:true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
- 
   return (
-    <div style={{ position: "fixed", top: 0, left: 0, width: "100vw", zIndex: 9999, transform: visible ? "translateY(0)" : "translateY(-110%)", transition: "transform 0.35s ease" }}>
-      {/* slimmer padding */}
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(1rem, 4vw, 3rem)", padding: "0.5rem 2rem", background: "rgba(7, 0, 39, 0.9)", backdropFilter: "blur(6px)" }}>
-        {[
-          { label: "about me",  fn: onAbout },
-          { label: "projects",  fn: onProjects },
-          { label: "contact",   fn: onContact },
-        ].map(({ label, fn }) => (
-          <button
-            key={label}
-            onClick={fn}
-            className={pixelifySans.className}
-            onMouseEnter={(e) => { e.currentTarget.style.color = "#FF0DDB"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = "#93FF50"; }}
-            style={{ background: "none", border: "none", cursor: "pointer", color: "#93FF50", fontSize: "clamp(0.7rem, 1.5vw, 0.9rem)", fontWeight: 400, transition: "color 0.2s" }}
-          >{label}</button>
-        ))}
+    <nav style={{ position:"fixed", top:0, left:0, width:"100vw", zIndex:9999, transform:visible?"translateY(0)":"translateY(-110%)", transition:"transform 0.3s ease" }}>
+      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", padding:"0.85rem clamp(2rem,6vw,5rem)", background:"rgba(7,0,39,0.97)", backdropFilter:"blur(12px)" }}>
+        {/* logo — grotesk, fun with star */}
+        <span className={grotesk.className} style={{ color:"#fff", fontSize:"1.1rem", fontWeight:900, letterSpacing:"-0.02em", display:"flex", alignItems:"center", gap:"0.4rem" }}>
+          MY<span style={{ color:"#FF0DDB" }}>.</span>
+          <span style={{ color:"rgba(147,255,80,0.35)", fontSize:"0.7rem", fontWeight:400, letterSpacing:"0.1em" }} className={pixelify.className}>★</span>
+        </span>
+        {/* links — pixelify, evenly spread in their section */}
+        <div style={{ display:"flex", gap:"clamp(2rem,5vw,5rem)", alignItems:"center" }}>
+          {[{ label:"about me", fn:onAbout },{ label:"projects", fn:onProjects },{ label:"contact", fn:onContact }].map(({ label, fn }) => (
+            <button key={label} onClick={fn} className={pixelify.className}
+              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color="#FF0DDB"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color="#93FF50"; }}
+              style={{ background:"none", border:"none", cursor:"pointer", color:"#93FF50", fontSize:"clamp(0.88rem,1.3vw,1.05rem)", letterSpacing:"0.08em", transition:"color 0.2s" }}
+            >{label}</button>
+          ))}
+        </div>
       </div>
-      <svg width="100%" height="12" viewBox="0 0 1000 12" preserveAspectRatio="none" style={{ display: "block" }}>
-        <line x1="0" y1="1" x2="1000" y2="1" stroke="#93FF50" strokeWidth="1" />
-        <polygon points="430,1 445,12 555,12 570,1" fill="#93FF50" />
+      {/* cyberpunk chevron line — brighter */}
+      <svg width="100%" height="14" viewBox="0 0 1000 14" preserveAspectRatio="none" style={{ display:"block" }}>
+        <line x1="0" y1="1" x2="1000" y2="1" stroke="#93FF50" strokeWidth="1" opacity="0.6"/>
+        <polygon points="430,1 448,13 552,13 570,1" fill="#93FF50" opacity="0.6"/>
       </svg>
-    </div>
+    </nav>
   );
 }
  
