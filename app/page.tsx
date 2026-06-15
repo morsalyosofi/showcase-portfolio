@@ -53,6 +53,18 @@ This project improved my front-end skills through building a responsive, interac
 Building this portfolio helped me better understand how to combine functionality with design to create a polished user experience. Through the process I improved my skills in responsive web design, component-based development, and creative problem-solving.`,
   },
   {
+    title: "Card Game — Kauwe Bende",
+    year: "2025",
+    images: ["/images/pic19.png","/images/pic20.png","/images/pic21.png","/images/pic22.jpg","/images/pic23.jpg"],
+    tags: ["HTML/CSS","JavaScript","Vercel"],
+    description: "This is a semester 4 group project made for our client Join Us. We created a card game that uses physical cards together with a digital screen. Players use real cards while the questions appear on an iPad. The game is designed to help people who struggle socially or find it hard to make friends, by encouraging conversation and interaction.",
+    detail: `This project is a card game with physical cards and a digital part. The cards only show colors and symbols. When a player plays a card, they select the same card on an iPad, and then the question shows up on the screen.
+ 
+The game has different types of questions like competitive, reflective, future, and positive. The digital part helps with showing the questions, while the physical cards keep the game active and social so players talk to each other.
+ 
+We built the final version as a website using HTML, CSS, and JavaScript, and we hosted it on Vercel.`,
+  },
+  {
     title: "Logos & Poster — Kauwe Bende",
     year: "2025",
     images: ["/images/pic10.png","/images/pic11.png","/images/pic12.png"],
@@ -486,4 +498,3 @@ function Navbar({ onAbout, onProjects, onContact }: { onAbout:()=>void; onProjec
     </nav>
   );
 }
- 
